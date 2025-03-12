@@ -1,26 +1,23 @@
 extends NodeState
 
-@export var player: CharacterBody2D#选择角色
+@export var player: Player#选择角色
 @export var animated_sprite_2d: AnimatedSprite2D#选择动画
-
-var direction : Vector2#定义方向
 
 func _on_enter() -> void:
 	pass
 
 func _on_process(_delta : float) -> void:
 	pass
-
+ 
 func _on_physics_process(_delta : float) -> void:
-	direction = GameInputEvents.movement_input()
-	
-	if direction == Vector2.UP:
+	#判断角色朝向
+	if player.player_direction == Vector2.UP:
 		animated_sprite_2d.play("idle_back")
-	elif direction == Vector2.RIGHT:
+	elif player.player_direction == Vector2.RIGHT:
 		animated_sprite_2d.play("idle_right")
-	elif direction == Vector2.DOWN:
+	elif player.player_direction == Vector2.DOWN:
 		animated_sprite_2d.play("idle_front")
-	elif direction == Vector2.LEFT:
+	elif player.player_direction == Vector2.LEFT:
 		animated_sprite_2d.play("idle_left")
 	else:
 		animated_sprite_2d.play("idle_front")
@@ -30,5 +27,12 @@ func _on_next_transitions() -> void:
 	if GameInputEvents.is_movement_input():
 		transition.emit("Walk")
 	
+	if player.current_tool == DataTypes.Tools.AxeWood && GameInputEvents.use_tool():
+		transition.emit("Chopping")
+	if player.current_tool == DataTypes.Tools.TillGround && GameInputEvents.use_tool():
+		transition.emit("Tilling")
+	if player.current_tool == DataTypes.Tools.WaterCrops && GameInputEvents.use_tool():
+		transition.emit("Watering")
+	
 func _on_exit() -> void:
-	pass
+	animated_sprite_2d.stop()

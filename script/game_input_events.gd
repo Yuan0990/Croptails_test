@@ -2,6 +2,7 @@ class_name  GameInputEvents
 
 static var direction : Vector2
 
+#监控玩家的方向
 static func movement_input() -> Vector2:
 	if Input.is_action_pressed("walk_left"):
 		direction = Vector2.LEFT
@@ -16,8 +17,13 @@ static func movement_input() -> Vector2:
 	
 	return direction
 
+#判断玩家是否输入
 static func is_movement_input() -> bool:
 	if direction == Vector2.ZERO:
 		return false
 	else:
 		return true
+
+static func use_tool() -> bool:
+	var use_tool_value: bool = Input.is_action_just_pressed("hit")
+	return use_tool_value
