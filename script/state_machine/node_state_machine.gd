@@ -10,8 +10,11 @@ var node_states : Dictionary = {}
 var current_node_state : NodeState
 #current_node_state_name当前节点的名称
 var current_node_state_name : String
+#父节点名称，就可以知道是谁的状态转换了
+var parent_node_name: String
 
 func _ready() -> void:
+	parent_node_name = get_parent().name
 	for child in get_children():#遍历所有的子节点
 		if child is NodeState:# 检查是否为 NodeState 类型
 			node_states[child.name.to_lower()] = child# 将子节点存入字典（键为小写名称）
@@ -30,7 +33,7 @@ func _physics_process(delta: float) -> void:
 	if current_node_state:
 		current_node_state._on_physics_process(delta)
 		current_node_state._on_next_transitions()# 检查是否满足状态切换条件
-		#print("Current State:",current_node_state_name)
+		print(parent_node_name,"Current State:",current_node_state_name)
 		
 func transition_to(node_state_name : String) -> void:# 通过状态名称切换状态
 	if node_state_name == current_node_state.name.to_lower():# 如果目标状态与当前状态相同，直接返回
