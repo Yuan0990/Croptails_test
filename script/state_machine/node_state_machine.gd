@@ -33,7 +33,7 @@ func _physics_process(delta: float) -> void:
 	if current_node_state:
 		current_node_state._on_physics_process(delta)
 		current_node_state._on_next_transitions()# 检查是否满足状态切换条件
-		print(parent_node_name,"Current State:",current_node_state_name)
+		#print(parent_node_name,"Current State:",current_node_state_name)
 		
 func transition_to(node_state_name : String) -> void:# 通过状态名称切换状态
 	if node_state_name == current_node_state.name.to_lower():# 如果目标状态与当前状态相同，直接返回
@@ -51,4 +51,4 @@ func transition_to(node_state_name : String) -> void:# 通过状态名称切换�
 	
 	current_node_state = new_node_state#当前状态的切换
 	current_node_state_name = current_node_state.name.to_lower()
-	print("Current State:",current_node_state_name)
+	#print("Current State:",current_node_state_name)
