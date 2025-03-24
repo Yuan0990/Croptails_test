@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://447ie2nc21iw"]
+
+[ext_resource type="Theme" uid="uid://dfvssgcsh3avl" path="res://scenes/ui/game_ui_theme.tres" id="1_fnqby"]
+
+[node name="DayAndNightPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_fnqby")
+
+[node name="DayPanel" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_type_variation = &"DayAndNightCounterPanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="DayPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="Label" type="Label" parent="DayPanel/MarginContainer"]
+layout_mode = 2
+theme_type_variation = &"DayAndNightLabel"
+text = "Day 0"
