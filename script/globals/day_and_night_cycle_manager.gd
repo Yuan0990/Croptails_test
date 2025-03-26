@@ -15,7 +15,7 @@ var initial_hour: int = 12
 var initial_minute:int =30
 
 var time: float = 0.0
-var current_minute: int = -1#当前天数
+var current_minute: int = -1#当前分钟数
 var current_day:int = 0
 
 #声明游戏时间
@@ -36,7 +36,7 @@ func _process(delta: float) -> void:
 	
 #用于初始化时间
 func set_initial_time()-> void:
-	var initial_total_minute = initial_day * MINUTES_PER_DAY * (initial_hour * MINUTES_PER_HOUR) + initial_minute
+	var initial_total_minute = initial_day * MINUTES_PER_DAY + initial_hour * MINUTES_PER_HOUR + initial_minute
 	
 	time = initial_total_minute * GAME_MINUTE_DURATTOM
 
