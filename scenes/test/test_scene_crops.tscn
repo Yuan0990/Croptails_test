@@ -1,10 +1,18 @@
-[gd_scene load_steps=6 format=4 uid="uid://q2tlq4heckxq"]
+[gd_scene load_steps=9 format=4 uid="uid://q2tlq4heckxq"]
 
 [ext_resource type="PackedScene" uid="uid://dx0wq4qwolbb2" path="res://scenes/components/day_night_cycle_component.tscn" id="1_17gaa"]
 [ext_resource type="TileSet" uid="uid://caxmp6cg0w7uu" path="res://Tilesets/game_tile_set.tres" id="2_eku4r"]
 [ext_resource type="PackedScene" uid="uid://d5q47ma5qalb" path="res://scenes/characters/Player/player.tscn" id="3_s5uu4"]
 [ext_resource type="PackedScene" uid="uid://b73ftw1owsk3v" path="res://scenes/ui/game_screen.tscn" id="4_f40v7"]
 [ext_resource type="PackedScene" uid="uid://c5cs5h3av80r6" path="res://scenes/object/plant/corn.tscn" id="5_eku4r"]
+[ext_resource type="PackedScene" uid="uid://b7xkk1tu8u0f2" path="res://scenes/object/trees/small_tree.tscn" id="6_f40v7"]
+[ext_resource type="Shader" uid="uid://246kk2xiaqg7" path="res://scenes/object/shake.gdshader" id="7_wou7w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5ko52"]
+resource_local_to_scene = true
+shader = ExtResource("7_wou7w")
+shader_parameter/shake_intensity = 0.0
+shader_parameter/shake_speed = 20.0
 
 [node name="TestSceneDayAndNightCycle" type="Node2D"]
 
@@ -37,3 +45,7 @@ position = Vector2(250, 202)
 
 [node name="Corn4" parent="." instance=ExtResource("5_eku4r")]
 position = Vector2(215, 130)
+
+[node name="SmallTree" parent="." instance=ExtResource("6_f40v7")]
+material = SubResource("ShaderMaterial_5ko52")
+position = Vector2(153, 147)
